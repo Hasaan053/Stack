@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100; // Maximum size of the stack
+
+class Stack {
+private:
+    int top;            // Index of the top element
+    int arr[MAX_SIZE];  // Array to store stack elements
+
+public:
+    // Constructor
+    Stack() : top(-1) {}
+
+    // Function to check if the stack is empty
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    // Function to check if the stack is full
+    bool isFull() {
+        return top == MAX_SIZE - 1;
+    }
+
+    // Function to push an element onto the stack
+    void push(int x) {
+        if (isFull()) {
+            cout << "Stack Overflow\n";
+            return;
+        }
+        arr[++top] = x;
+        cout << x << " pushed to stack\n";
+    }
+
+    // Function to pop an element from the stack
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow\n";
+            return -1;
+        }
+        int popped = arr[top--];
+        cout << popped << " popped from stack\n";
+        return popped;
+    }
+
+    // Function to return the top element of the stack
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return -1;
+        }
+        return arr[top];
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    cout << "Top element: " << stack.peek() << endl;
+
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop(); // This will demonstrate stack underflow
+
+    return 0;
+}
